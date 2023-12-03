@@ -1,35 +1,42 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <section className="hero-image"></section>
+      <section className="container">
+        <div>
+          <h1>Our Collection</h1>
+          <p>
+            Introducing our Coffee Collection, a selection of unique coffees
+            from different roast types and origins, expertly roasted in small
+            batches and shipped fresh weekly.
+          </p>
+          <div>
+            <button>All Products</button>
+            <button>Available Now</button>
+          </div>
+        </div>
+        <div className="coffee-container">
+          <div className="cofee-card">
+            <div>
+              <img src="" alt="" />
+              <p className="popular-tag">Popular</p>
+            </div>
+            <div>
+              <p>Cappuccino</p>
+              <p>$5.20</p>
+            </div>
+            <div>
+              <img src="" alt="" />
+              <p>4.7 <span>(65 votes)</span></p>
+            </div>
+          </div>
+        </div>
+      </section>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
