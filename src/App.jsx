@@ -5,18 +5,18 @@ function App() {
   return (
     <>
       <section className="hero-image"></section>
-      <section className="container">
-        <div>
-          <h1>Our Collection</h1>
-          <p>
-            Introducing our Coffee Collection, a selection of unique coffees
-            from different roast types and origins, expertly roasted in small
-            batches and shipped fresh weekly.
-          </p>
-          <div>
-            <button>All Products</button>
-            <button>Available Now</button>
-          </div>
+      <section className="container info-container">
+        <div className="info">
+            <h1>Our Collection</h1>
+            <p>
+              Introducing our Coffee Collection, a selection of unique coffees
+              from different roast types and origins, expertly roasted in small
+              batches and shipped fresh weekly.
+            </p>
+            <div>
+              <button>All Products</button>
+              <button>Available Now</button>
+            </div>
         </div>
         <div className="coffee-container">
           <div className="cofee-card">
