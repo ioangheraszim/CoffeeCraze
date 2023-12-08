@@ -1,38 +1,40 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
+import CoffeeCard from "./components/coffeeCard";
 
 function App() {
+  const [coffeeData, setCoffeeData] = useState([]);
+
+  const fetchCoffeeData = async () => {
+    const response = await fetch("https://api.sampleapis.com/coffee/hot");
+    const data = await response.json();
+    console.log(data);
+    setCoffeeData(data);
+  };
+
+  useEffect(() => {
+    fetchCoffeeData();
+  }, []);
   return (
     <>
-      <section className="hero-image"></section>
       <section className="container info-container">
         <div className="info">
-            <h1>Our Collection</h1>
-            <p>
-              Introducing our Coffee Collection, a selection of unique coffees
-              from different roast types and origins, expertly roasted in small
-              batches and shipped fresh weekly.
-            </p>
-            <div>
-              <button>All Products</button>
-              <button>Available Now</button>
-            </div>
+          <div className="the-vector"></div>
+          <h1>Our Collection</h1>
+          <p>
+            Introducing our Coffee Collection, a selection of unique coffees
+            from different roast types and origins, expertly roasted in small
+            batches and shipped fresh weekly.
+          </p>
+          <div className="button-container">
+            <button>All Products</button>
+            <button>Available Now</button>
+          </div>
         </div>
         <div className="coffee-container">
-          <div className="cofee-card">
-            <div>
-              <img src="" alt="" />
-              <p className="popular-tag">Popular</p>
-            </div>
-            <div>
-              <p>Cappuccino</p>
-              <p>$5.20</p>
-            </div>
-            <div>
-              <img src="" alt="" />
-              <p>4.7 <span>(65 votes)</span></p>
-            </div>
-          </div>
+          {coffeeData.map((coffee) => (
+            <CoffeeCard key={coffee.id} {...coffee} />
+          ))}
         </div>
       </section>
     </>
