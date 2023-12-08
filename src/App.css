@@ -77,6 +77,10 @@ button:focus {
     background-color: var(--grey);
 }
 
+.hot-btn::after {
+    background-color: var(--grey);
+}
+
 .image-container img {
     width: 100%;
     border-radius: 1rem;
@@ -116,16 +120,13 @@ button:focus {
 }
 
 .title-price .coffee-title {
+    font-size: 1.5rem;
+    padding: .5rem 0;
     font-weight: 700;
     color: var(--milk-white);
 }
 
-.title-price .coffee-price {
-    background-color: var(--lightgreen-blue);
-    padding: .25rem .75rem;
-    border-radius: .5rem;
-    color: var(--dark);
-}
+
 
 .votes {
     color: var(--milk-white);
