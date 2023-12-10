@@ -6,12 +6,18 @@ function App() {
   const [coffeeData, setCoffeeData] = useState([]);
   const [currentCoffee, setCurrentCoffee] = useState("hot");
   const fetchCoffeeData = async () => {
-    const response = await fetch(
-      `https://api.sampleapis.com/coffee/${currentCoffee}`
-    );
-    const data = await response.json();
-    console.log(data);
-    setCoffeeData(data);
+    try {
+      const response = await fetch(
+        `https://api.sampleapis.com/coffee/${currentCoffee}`
+      );
+      if(!response.ok) {
+        throw new Error(`Failed to fetch coffee from info ${response.statusText}`)
+      }
+      const data = await response.json();
+      setCoffeeData(data);
+    } catch (error) {
+      console.error("Error fetching coffee info:", error);
+    }   
   };
 
   useEffect(() => {
