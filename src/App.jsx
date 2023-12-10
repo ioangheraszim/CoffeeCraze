@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import CoffeeCard from "./components/coffeeCard";
+import CoffeeCard from "./components/CoffeeCard"
 
 function App() {
   const [coffeeData, setCoffeeData] = useState([]);
