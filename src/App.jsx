@@ -4,17 +4,21 @@ import CoffeeCard from "./components/CoffeeCard"
 
 function App() {
   const [coffeeData, setCoffeeData] = useState([]);
-  const [currentCoffee, setCurrentCoffee] = useState("hot");
+  const [filteredCoffeeData, setFilteredCoffeeData] = useState([]);
+  const [currentCoffee, setCurrentCoffee] = useState("all");
+
   const fetchCoffeeData = async () => {
     try {
       const response = await fetch(
-        `https://api.sampleapis.com/coffee/${currentCoffee}`
+        `https://raw.githubusercontent.com/devchallenges-io/web-project-ideas/main/front-end-projects/data/simple-coffee-listing-data.json`
       );
       if(!response.ok) {
         throw new Error(`Failed to fetch coffee from info ${response.statusText}`)
       }
       const data = await response.json();
-      setCoffeeData(data);
+      console.log(data)
+      setCoffeeData(data)
+      setFilteredCoffeeData(data);
     } catch (error) {
       console.error("Error fetching coffee info:", error);
     }   
@@ -22,10 +26,18 @@ function App() {
 
   useEffect(() => {
     fetchCoffeeData();
-  }, [currentCoffee]);
+  }, []);
 
-  const setCoffeeType = (coffeeType) => {
-    setCurrentCoffee(coffeeType);
+  const setCoffeeAvailability = (coffeeAvailability) => {
+    setCurrentCoffee(coffeeAvailability);
+    if (coffeeAvailability === "all") {
+      setFilteredCoffeeData(coffeeData);
+    } else {
+      const filteredData = coffeeData.filter(
+        (coffee) => coffee.available === (coffeeAvailability === "available_now")
+      );
+      setFilteredCoffeeData(filteredData);
+    }
   };
 
   return (
@@ -40,12 +52,12 @@ function App() {
             and shipped fresh weekly.
           </p>
           <div className="button-container">
-            <button className="hot-btn" onClick={() => setCoffeeType("hot")}>Hot Coffees</button>
-            <button onClick={() => setCoffeeType("iced")}>Ice Coffees</button>
+            <button className="hot-btn" onClick={() => setCoffeeAvailability("all")}>All Products</button>
+            <button onClick={() => setCoffeeAvailability("available_now")}>Available Now</button>
           </div>
         </div>
         <div className="coffee-container">
-          {coffeeData.map((coffee) => (
+          {filteredCoffeeData.map((coffee) => (
             <CoffeeCard key={coffee.id} {...coffee} />
           ))}
         </div>
